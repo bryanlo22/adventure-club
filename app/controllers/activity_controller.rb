@@ -8,6 +8,11 @@ class ActivityController < ApplicationController
   def index
     activities = Activity.collection.aggregate([
       {
+        :$sort => {
+          :date => 1
+        }
+      },
+      {
         :$project => {
           :_id => '$_id',
           :event => '$event',
