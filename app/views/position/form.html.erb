@@ -1,0 +1,29 @@
+<%= form_tag(@path, :method => 'post', :id => 'form') do %>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('title', 'Title') %>
+      <%= text_field_tag('title', @position.title, :class => 'validate') %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('description', 'Description') %>
+      <%= text_area_tag('description', @position.description, :class => 'materialize-textarea validate') %>
+    </div>
+  </div>
+
+  <label>Names</label>
+  <% @users.each do |user| %>
+    <% is_checked = @position.users.include?(user.id.to_s) unless @position.users.nil? %>
+    <p>
+      <%= check_box_tag('users[]', user.id, is_checked, {:id => user.id, :class => 'filled-in'}) %>
+      <%= label_tag(user.id, user.name) %>
+    </p>
+  <% end %>
+
+
+
+  <%= submit_tag('Submit', :class => 'btn') %>
+<% end %>

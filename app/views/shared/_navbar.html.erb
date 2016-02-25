@@ -1,0 +1,35 @@
+<ul id='userDropdown' class='dropdown-content'>
+  <li><%= link_to 'Profile', edit_user_path(current_user.id.to_s) %></li>
+  <li class='divider'></li>
+  <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+</ul>
+<nav>
+  <div class='nav-wrapper'>
+    <%= link_to 'Adventure Club', home_path, :class => 'brand-logo' %>
+    <a href='#' data-activates='mobileMenu' id='menu' class='button-collapse'><i class='material-icons'>menu</i></a>
+    <ul id='nav-mobile' class='right hide-on-med-and-down'>
+      <%= content_tag(:li, link_to('Chat', ENV['CHATROOM_URL'])) unless ENV['CHATROOM_URL'].nil? %>
+      <li><%= link_to 'Wall', wall_path %></li>
+      <li><%= link_to 'Actions', activities_path %></li>
+      <li><%= link_to 'About', position_path %></li>
+      <li><%= link_to 'Users', users_path %></li>
+      <%= content_tag(:li, link_to('Logs', audit_path)) if can?(:manage, :audit) %>
+      <li><a class='dropdown-button' href='#!' data-activates='userDropdown'><%= current_user.name %><i class='material-icons right'>arrow_drop_down</i></a></li>
+    </ul>
+    <ul class='side-nav' id='mobileMenu'>
+      <%= content_tag(:li, link_to('Chat', ENV['CHATROOM_URL'])) unless ENV['CHATROOM_URL'].nil? %>
+      <li><%= link_to 'Wall', wall_path %></li>
+      <li><%= link_to 'Actions', activities_path %></li>
+      <li><%= link_to 'About', position_path %></li>
+      <li><%= link_to 'Users', users_path %></li>
+      <% if can?(:manage, :audit) %>
+        <li class='divider'></li>
+        <%= content_tag(:li, link_to('Logs', audit_path)) %>
+        <li class='divider'></li>
+      <% end %>
+      <li><%= link_to 'Profile', edit_user_path(current_user.id.to_s) %></li>
+      <li class='divider'></li>
+      <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+    </ul>
+  </div>
+</nav>

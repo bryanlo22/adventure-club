@@ -1,0 +1,27 @@
+<%= form_tag(@path, :method => 'post', :id => 'form') do %>
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('name', 'Name') %>
+      <%= text_field_tag('name', @name, :class => 'validate', :required => true) %>
+    </div>
+  </div>
+
+  <% if can?(:manage, User.all) %>
+    <div class='row'>
+      <div class='input-field col s12'>
+        <%= label_tag('email', 'Email') %>
+        <%= email_field_tag('email', @email, :class => 'validate') %>
+      </div>
+    </div>
+
+    <% User::ROLES.each do |role| %>
+      <% is_checked = @roles.include?(role) unless @roles.nil? %>
+      <p>
+        <%= check_box_tag('roles[]', role, is_checked, {:id => role, :class => 'filled-in'}) %>
+        <%= label_tag(role, role) %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= submit_tag('Submit', :class => 'btn') %>
+<% end %>

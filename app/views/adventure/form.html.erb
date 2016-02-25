@@ -1,0 +1,70 @@
+<%= form_tag(@path, :method => 'post', :id => 'form') do %>
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('type', 'Type') %>
+      <%= text_field_tag('type', @adventure.type, :class => 'validate', :required => true) %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('photo', 'Commemorative Photo') %>
+      <%= text_field_tag('photo', @adventure.photo, :class => 'validate') %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('location', 'Location') %>
+      <%= text_field_tag('location', @adventure.location, :class => 'validate', :required => true) %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('adventure_date', 'Date') %>
+      <%= date_field('adventure', 'date', :value => @date, :class => 'datepicker', :required => true) %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col s6'>
+      <label>Heroes</label>
+      <% @users.each do |user| %>
+        <% is_checked = @adventure.heroes.include?(user.id.to_s) unless @adventure.heroes.nil? %>
+        <p>
+          <%= check_box_tag('heroes[]', user.id, is_checked, {:id => user.id, :class => 'filled-in'}) %>
+          <%= label_tag(user.id, user.name) %>
+        </p>
+      <% end %>
+    </div>
+
+    <div class='col s6'>
+      <label>Adventurers</label>
+      <% @users.each do |user| %>
+        <% is_checked = @adventure.participants.include?(user.id.to_s) unless @adventure.participants.nil? %>
+        <p>
+          <%= check_box_tag('participants[]', user.id, is_checked, {:id => "participants_#{user.id}", :class => 'filled-in'}) %>
+          <%= label_tag("participants_#{user.id}", user.name) %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <%= submit_tag('Submit', :class => 'btn') %>
+<% end %>
+
+
+
+<script>
+  $(function() {
+    $('.datepicker').pickadate({
+      selectMonths: true,
+      selectYears: 20,
+      format: 'mmmm dd, yyyy',
+      onClose: function() {
+
+      }
+    })
+  })
+</script>

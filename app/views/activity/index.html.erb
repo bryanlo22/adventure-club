@@ -1,0 +1,34 @@
+<table class='striped'>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Points</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity['event'] %></td>
+        <td><%= activity['date'].strftime('%B %d, %Y') %></td>
+        <td><%= activity['user'] %></td>
+        <td><%= activity['points'] %></td>
+        <td><%= activity['description'] %></td>
+        <%= content_tag(:td, link_to('Edit', edit_activity_path(activity['_id'].to_s))) if can?(:manage, Activity) %>
+      </tr>
+    <% end %>
+    <% if can?(:manage, Activity) %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= link_to 'New', new_activity_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adventure Club</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class='container'>
+      <h1 class='center'>Adventure Club</h1>
+      <%= yield %>
+    </div>
+  </body>
+</html>

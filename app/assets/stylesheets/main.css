@@ -1,0 +1,21 @@
+body > .container {
+  padding-bottom: 60px;
+}
+
+nav {
+  margin-bottom: 40px;
+}
+
+nav .nav-wrapper .brand-logo,
+nav #menu {
+    padding-left: 15px;
+}
+
+#mobileMenu li {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+tr > td {
+  vertical-align: top;
+}

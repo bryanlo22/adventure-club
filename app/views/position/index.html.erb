@@ -1,0 +1,28 @@
+<table class='striped'>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Name</th>
+      <th>Description</th>
+      <%= content_tag(:th, 'Action') if can?(:manage, :position) %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr>
+        <td><%= position['title'] %></td>
+        <td><%= position['users'] %></td>
+        <td><%= position['description'] %></div></td>
+        <%= content_tag(:td, link_to('Edit', edit_position_path(position['_id'].to_s))) if can?(:manage, Position) %>
+      </tr>
+    <% end %>
+    <% if can?(:manage, Position) %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= link_to 'New', new_position_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

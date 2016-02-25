@@ -1,0 +1,55 @@
+<%= form_tag(@path, :method => 'post', :id => 'form') do %>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('event', 'Event') %>
+      <%= text_field_tag('event', @activity.event, :class => 'validate') %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('activity_date', 'Date') %>
+      <%= date_field('activity', 'date', :value => @date, :class => 'datepicker') %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('points', 'Points') %>
+      <%= text_field_tag('points', @activity.points, :class => 'validate') %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='input-field col s12'>
+      <%= label_tag('description', 'Description') %>
+      <%= text_area_tag('description', @activity.description, :class => 'materialize-textarea validate') %>
+    </div>
+  </div>
+
+  <label>Name</label>
+  <% @users.each do |user| %>
+    <% is_checked = @activity.user.to_s == user.id.to_s %>
+    <p>
+      <%= radio_button('user', 'id', user.id, {:checked => is_checked}) %>
+      <%= label_tag("user_id_#{user.id}", user.name) %>
+    </p>
+  <% end %>
+
+
+
+  <%= submit_tag('Submit', :class => 'btn') %>
+<% end %>
+
+
+
+<script>
+  $(function() {
+    $('.datepicker').pickadate({
+      selectMonths: true,
+      selectYears: 20,
+      format: 'mmmm dd, yyyy'
+    });
+  })
+</script>

@@ -1,0 +1,36 @@
+<%= link_to 'All', home_path, :class => 'waves-effect waves-light btn' %>
+<%= link_to 'Bike', bike_path, :class => 'waves-effect waves-light btn' %>
+<%= link_to 'Hike', hike_path, :class => 'waves-effect waves-light btn' %>
+
+<table class='striped'>
+  <thead>
+    <tr>
+      <th>Commemorative Photo</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th>Heroes</th>
+      <th>Adventurers</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @adventures.each do |adventure| %>
+      <tr>
+        <td><%= image_tag(adventure['photo'], :width => '250') %></td>
+        <td><%= adventure['location'] %></td>
+        <td><%= adventure['date'] %></td>
+        <td><%= adventure['heroes'] %></td>
+        <td><%= adventure['participants'] %></td>
+        <td><%= link_to 'Edit', edit_adventure_path(adventure['_id'].to_s) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to 'New', new_adventure_path %></td>
+    </tr>
+  </tbody>
+</table>

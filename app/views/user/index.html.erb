@@ -1,0 +1,32 @@
+<table class='striped'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <%= content_tag(:th, 'Email') if can?(:manage, User.all) %>
+      <th>Roles</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <%= content_tag(:td, user.email) if can?(:manage, User.all) %>
+        <td><%= user.roles.sort.join(', ') %></td>
+        <td>
+          <% if can?(:manage, user) %>
+            <%= link_to 'Edit', edit_user_path(user.id.to_s) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <% if can?(:manage, User.all) %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= link_to 'New', new_user_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

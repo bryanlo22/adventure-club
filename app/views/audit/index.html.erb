@@ -1,0 +1,36 @@
+<table class='striped'>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>User</th>
+      <th>Type</th>
+      <th>Modifications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @audits.each do |audit| %>
+      <tr>
+        <%= content_tag :td, nil, 'data-created-at' => audit['created_at'] %>
+        <td><%= audit['user'] %></td>
+        <td><%= audit['type'] %></td>
+        <td><%= audit['modifications']%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<script>
+  $(function() {
+    function updateTime() {
+      $('tr td:nth-child(1)').each(function(key, value) {
+        var time = $(value).data('created-at');
+        var relativeTime = moment.utc(time, 'YYYY-MM-DD hh:mm:ss').local().fromNow();
+        $(value).text(relativeTime);
+      })
+    }
+    updateTime();
+    setInterval(updateTime, 60 * 1000);
+  })
+</script>
