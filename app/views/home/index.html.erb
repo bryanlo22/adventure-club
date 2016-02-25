@@ -16,7 +16,7 @@
   <tbody>
     <% @adventures.each do |adventure| %>
       <tr>
-        <td><%= image_tag(adventure['photo'], :width => '250') %></td>
+        <td><%= image_tag(adventure['photo'], :class => 'materialboxed') %></td>
         <td><%= adventure['location'] %></td>
         <td><%= adventure['date'] %></td>
         <td><%= adventure['heroes'] %></td>
