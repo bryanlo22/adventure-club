@@ -21,8 +21,13 @@ class PositionController < ApplicationController
     users = User.get_users
 
     @positions.each do |position|
-      names = position['user_ids'].map{|id| users[id][:name]}
-      position['users'] = names.join('<br>').html_safe
+      position['users'] = position['user_ids'].map do |id|
+        {
+          :name => users[id][:name],
+          :image => users[id][:image]
+        }
+      end
+      # position['users'] = names.join('<br>').html_safe
     end
   end
 
