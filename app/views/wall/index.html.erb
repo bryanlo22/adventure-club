@@ -1,18 +1,44 @@
-<table class='striped'>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Total Points</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= image_tag(user['image'], :class => 'profileImage') %></td>
-        <td><%= user['name'] %></td>
-        <td><%= user['points'] %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class='row'>
+  <div class='col s12 m6 push-m6'>
+    <table class='striped'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Award</th>
+          <th>Stat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @notables.each do |notable| %>
+          <tr>
+            <td><%= image_tag(notable[:image], :class => 'profileImage') %></td>
+            <td><%= notable[:name] %></td>
+            <td><%= notable[:award] %></td>
+            <td><%= notable[:stat] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class='col s12 m6 pull-m6'>
+    <table class='striped'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Total Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag(user['image'], :class => 'profileImage') %></td>
+            <td><%= user['name'] %></td>
+            <td><%= user['points'] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

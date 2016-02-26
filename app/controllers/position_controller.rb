@@ -27,8 +27,8 @@ class PositionController < ApplicationController
           :image => users[id][:image]
         }
       end
-      # position['users'] = names.join('<br>').html_safe
     end
+
   end
 
   def new
