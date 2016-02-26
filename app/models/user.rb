@@ -15,6 +15,7 @@ class User
   validates_uniqueness_of :email, :allow_blank => :true
 
   field :name, :type => String
+  field :image, :type => String
   field :email, :type => String
   field :encrypted_password, :type => String
 
@@ -32,33 +33,40 @@ class User
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(:email => data['email']).first
+    user.image = data['image'] if user.image.nil?
+    user.save!
 
     unless user
-      user = User.create(:name => data['name'], :email => data['email'])
+      user = User.create(:name => data['name'], :email => data['email'], :image => data['image'])
     end
 
     return user
   end
 
-  def self.get_user_names
+  def self.get_users
     user_collection = User.collection.aggregate([
       {
         :$project => {
           :_id => '$_id',
-          :name => '$name'
+          :name => '$name',
+          :image => '$image'
         }
       }
     ])
 
-    user_names = {}
+    users = {}
 
     user_collection.each do |user|
       id = user['_id'].to_s
       name = user['name']
-      user_names[id] = name
+      image = user['image']
+      users[id] = {
+        :name => name,
+        :image => image
+      }
     end
 
-    return user_names
+    return users
   end
 
   def generate_password

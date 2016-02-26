@@ -29,11 +29,12 @@ class ActivityController < ApplicationController
       @activities << activity
     end
 
-    user_names = User.get_user_names
+    users = User.get_users
 
     @activities.each do |activity|
       id = activity['user_id']
-      activity['user'] = user_names[id]
+      activity['name'] = users[id][:name]
+      activity['image'] = users[id][:image]
     end
   end
 

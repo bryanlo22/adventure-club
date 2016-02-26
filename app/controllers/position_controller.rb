@@ -18,11 +18,11 @@ class PositionController < ApplicationController
       @positions << position
     end
 
-    user_names = User.get_user_names
+    users = User.get_users
 
     @positions.each do |position|
-      title = position['user_ids'].map{|id| user_names[id]}
-      position['users'] = title.join('<br>').html_safe
+      names = position['user_ids'].map{|id| users[id][:name]}
+      position['users'] = names.join('<br>').html_safe
     end
   end
 

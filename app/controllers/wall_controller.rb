@@ -6,7 +6,8 @@ class WallController < ApplicationController
       {
         :$project => {
           :_id => '$_id',
-          :name => '$name'
+          :name => '$name',
+          :image => '$image'
         }
       }
     ])

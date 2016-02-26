@@ -36,3 +36,14 @@ tr > td {
   max-width: none;
   max-height: none;
 }
+
+.profileImageNav {
+  margin-right: 5px;
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.profileImage {
+  max-width: 30px;
+  max-height: 30px;
+}

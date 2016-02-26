@@ -6,15 +6,13 @@ class UserController < ApplicationController
   end
 
   def new
+    @user = User.new
     @path = create_user_path
     render 'form'
   end
 
   def edit
-    user = User.where(:id => params[:id]).first
-    @name = user.name
-    @email = user.email
-    @roles = user.roles
+    @user = User.where(:id => params[:id]).first
     @path = update_user_path(params[:id])
     render 'form'
   end
@@ -32,7 +30,8 @@ class UserController < ApplicationController
   def handle(user)
     user.email = params[:email]
     user.name = params[:name]
-    user.roles = params[:roles] || [] if can?(:manage, :all)
+    user.image = params[:image]
+    user.roles = params[:roles] || []
     changes = user.changes
     user.save!
     Audit.create!(:user => current_user.id.to_s, :type => 'User', :modifications => changes)

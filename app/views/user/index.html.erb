@@ -1,6 +1,7 @@
 <table class='striped'>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <%= content_tag(:th, 'Email') if can?(:manage, User.all) %>
       <th>Roles</th>
@@ -10,6 +11,11 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td>
+          <div class='center'>
+            <%= image_tag(user.image, :class => 'profileImage') %>
+          </div>
+        </td>
         <td><%= user.name %></td>
         <%= content_tag(:td, user.email) if can?(:manage, User.all) %>
         <td><%= user.roles.sort.join(', ') %></td>
@@ -22,6 +28,7 @@
     <% end %>
     <% if can?(:manage, User.all) %>
       <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

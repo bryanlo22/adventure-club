@@ -19,11 +19,12 @@ class AuditController < ApplicationController
       @audits << audit
     end
 
-    user_names = User.get_user_names
+    users = User.get_users
 
     @audits.each do |audit|
       id = audit['user_id']
-      audit['user'] = user_names[id]
+      audit['name'] = users[id][:name]
+      audit['image'] = users[id][:image]
     end
   end
 

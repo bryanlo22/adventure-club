@@ -3,6 +3,7 @@
     <tr>
       <th>Event</th>
       <th>Date</th>
+      <th>Image</th>
       <th>Name</th>
       <th>Points</th>
       <th>Description</th>
@@ -14,7 +15,8 @@
       <tr>
         <td><%= activity['event'] %></td>
         <td><%= activity['date'].strftime('%B %d, %Y') %></td>
-        <td><%= activity['user'] %></td>
+        <td><%= image_tag(activity['image'], :class => 'profileImage') %></td>
+        <td><%= activity['name'] %></td>
         <td><%= activity['points'] %></td>
         <td><%= activity['description'] %></td>
         <%= content_tag(:td, link_to('Edit', edit_activity_path(activity['_id'].to_s))) if can?(:manage, Activity) %>
@@ -22,6 +24,7 @@
     <% end %>
     <% if can?(:manage, Activity) %>
       <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

@@ -14,7 +14,14 @@
       <li><%= link_to 'About', position_path %></li>
       <li><%= link_to 'Users', users_path %></li>
       <%= content_tag(:li, link_to('Logs', audit_path)) if can?(:manage, :audit) %>
-      <li><a class='dropdown-button' href='#!' data-activates='userDropdown'><%= current_user.name %><i class='material-icons right'>arrow_drop_down</i></a></li>
+      <li>
+        <a class='dropdown-button' href='#!' data-activates='userDropdown'>
+          <div class='valign-wrapper'>
+            <%= image_tag(current_user.image, :class => 'valign profileImageNav circle') if current_user.image? %>
+            <%= current_user.name %><i class='material-icons right'>arrow_drop_down</i>
+          </div>
+        </a>
+      </li>
     </ul>
     <ul class='side-nav' id='mobileMenu'>
       <%= content_tag(:li, link_to('Chat', ENV['CHATROOM_URL'])) unless ENV['CHATROOM_URL'].nil? %>

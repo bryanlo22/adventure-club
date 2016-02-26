@@ -2,7 +2,8 @@
   <thead>
     <tr>
       <th>Time</th>
-      <th>User</th>
+      <th>Image</th>
+      <th>Name</th>
       <th>Type</th>
       <th>Modifications</th>
     </tr>
@@ -11,7 +12,8 @@
     <% @audits.each do |audit| %>
       <tr>
         <%= content_tag :td, nil, 'data-created-at' => audit['created_at'] %>
-        <td><%= audit['user'] %></td>
+        <td><%= image_tag(audit['image'], :class => 'profileImage') %></td>
+        <td><%= audit['name'] %></td>
         <td><%= audit['type'] %></td>
         <td><%= audit['modifications']%></td>
       </tr>

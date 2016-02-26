@@ -1,6 +1,7 @@
 <table class='striped'>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>Total Points</th>
     </tr>
@@ -8,6 +9,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= image_tag(user['image'], :class => 'profileImage') %></td>
         <td><%= user['name'] %></td>
         <td><%= user['points'] %></td>
       </tr>

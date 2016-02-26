@@ -45,19 +45,19 @@ class HomeController < ApplicationController
       @adventures << adventure
     end
 
-    user_names = User.get_user_names
+    users = User.get_users
 
     @adventures.each do |adventure|
       if adventure['hero_ids'].present?
-        heroes = adventure['hero_ids'].map{|id| user_names[id]}
+        heroes = adventure['hero_ids'].map{|id| users[id][:name]}
         adventure['heroes'] = heroes.join('<br>').html_safe
       end
       if adventure['villain_ids'].present?
-        heroes = adventure['villain_ids'].map{|id| user_names[id]}
+        heroes = adventure['villain_ids'].map{|id| users[id][:name]}
         adventure['villains'] = villains.join('<br>').html_safe
       end
       if adventure['participant_ids'].present?
-        participants = adventure['participant_ids'].map{|id| user_names[id]}
+        participants = adventure['participant_ids'].map{|id| users[id][:name]}
         adventure['participants'] = participants.join('<br>').html_safe
       end
     end
