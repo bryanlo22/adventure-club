@@ -21,20 +21,7 @@ tr > td {
 }
 
 .material-placeholder {
-  max-width: 250px;
-  max-height: 250px;
-}
-
-.materialboxed {
-  max-width: 250px;
-  max-height: 250px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.materialboxed.active {
-  max-width: none;
-  max-height: none;
+  max-width: 480px;
 }
 
 .profileImageNav {
